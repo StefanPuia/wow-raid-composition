@@ -85,7 +85,7 @@
 
 	"mage": {
 		"name": "Mage",
-		"colour": "#ABD473",
+		"colour": "#69CCF0",
 		"specs": [{
 			"name": "Arcane",
 			"role": "dps",
