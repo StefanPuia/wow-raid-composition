@@ -1,0 +1,194 @@
+[
+    {
+        "name": "Mulaganesh",
+        "class": "monk",
+        "spec": {
+            "id": "0",
+            "ilvl": "967"
+        }
+    },
+    {
+        "name": "Tidemyth",
+        "class": "shaman",
+        "spec": {
+            "id": "2",
+            "ilvl": "965"
+        }
+    },
+    {
+        "name": "Albionna",
+        "class": "priest",
+        "spec": {
+            "id": "1",
+            "ilvl": "963"
+        }
+    },
+    {
+        "name": "Lilmissmolly",
+        "class": "hunter",
+        "spec": {
+            "id": "0",
+            "ilvl": "960"
+        }
+    },
+    {
+        "name": "Havodem",
+        "class": "warlock",
+        "spec": {
+            "id": "0",
+            "ilvl": "969"
+        }
+    },
+    {
+        "name": "Stormwolf",
+        "class": "shaman",
+        "spec": {
+            "id": "1",
+            "ilvl": "964"
+        }
+    },
+    {
+        "name": "Celtian",
+        "class": "deathknight",
+        "spec": {
+            "id": "1",
+            "ilvl": "946"
+        }
+    },
+    {
+        "name": "Adyra",
+        "class": "rogue",
+        "spec": {
+            "id": "0",
+            "ilvl": "967"
+        }
+    },
+    {
+        "name": "Dondaj",
+        "class": "druid",
+        "spec": {
+            "id": "2",
+            "ilvl": "965"
+        }
+    },
+    {
+        "name": "Fennjr",
+        "class": "deathknight",
+        "spec": {
+            "id": 2,
+            "ilvl": "955"
+        }
+    },
+    {
+        "name": "Frostberry",
+        "class": "deathknight",
+        "spec": {
+            "id": 2,
+            "ilvl": "972"
+        }
+    },
+    {
+        "name": "Fists",
+        "class": "monk",
+        "spec": {
+            "id": 2,
+            "ilvl": "962"
+        }
+    },
+    {
+        "name": "Glennradars",
+        "class": "deathknight",
+        "spec": {
+            "id": 0,
+            "ilvl": "967"
+        }
+    },
+    {
+        "name": "Iamu",
+        "class": "hunter",
+        "spec": {
+            "id": 2,
+            "ilvl": "968"
+        }
+    },
+    {
+        "name": "Khamo",
+        "class": "shaman",
+        "spec": {
+            "id": 1,
+            "ilvl": "957"
+        }
+    },
+    {
+        "name": "Sabahudin",
+        "class": "mage",
+        "spec": {
+            "id": 1,
+            "ilvl": "960"
+        }
+    },
+    {
+        "name": "Versacedan",
+        "class": "hunter",
+        "spec": {
+            "id": 1,
+            "ilvl": "956"
+        }
+    },
+    {
+        "name": "Cameltotem",
+        "class": "shaman",
+        "spec": {
+            "id": 1,
+            "ilvl": "950"
+        }
+    },
+    {
+        "name": "Exxilent",
+        "class": "warlock",
+        "spec": {
+            "id": 0,
+            "ilvl": "942"
+        }
+    },
+    {
+        "name": "Krapula",
+        "class": "monk",
+        "spec": {
+            "id": 1,
+            "ilvl": "950"
+        }
+    },
+    {
+        "name": "Neytirx",
+        "class": "monk",
+        "spec": {
+            "id": 2,
+            "ilvl": "950"
+        }
+    },
+    {
+        "name": "Sqwelch",
+        "class": "paladin",
+        "spec": {
+            "id": 0,
+            "ilvl": "953"
+        }
+    },
+    {
+        "name": "Mcshanked",
+        "class": "rogue",
+        "spec": {
+            "id": 0,
+            "ilvl": "961"
+        }
+    },
+    {
+        "name": "Wellsey",
+        "class": "warrior",
+        "spec": {
+            "id": 2,
+            "ilvl": "968"
+        }
+    }
+]

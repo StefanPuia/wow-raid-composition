@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WoW Raid Composition Tool</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link rel="stylesheet" href="static/style.css">
+
+	<script src="static/functions.js"></script>
+	<script src="static/script.js"></script>
+</head>
+<body>
+	<h2>Raid Composition Tool</h2>
+	<div class="raidcomp">
+		<div class="total">
+			<h3>Total</h3>
+		</div>
+		<div class="tanks">
+			<h3>Tanks</h3>
+		</div>
+		<div class="healers">
+			<h3>Healers</h3>
+		</div>
+		<div class="dps">
+			<h3>DPS</h3>
+		</div>	
+		<div class="ranged">
+			<h3>Ranged</h3>
+		</div>
+		<div class="melee">
+			<h3>Melee</h3>
+		</div>	
+	</div>
+
+	<div class="addplayer form form-inline">
+		Name:
+		<input class="form-control" type="text" id="playerName">
+		Class:
+		<select class="form-control" id="playerClass">
+			<option value="0" disabled selected>Select a class</option>
+		</select>
+		Spec:
+		<select class="form-control" id="playerSpec">
+			<option value="0" disabled selected>Select a class</option>
+		</select>
+		Item Level:
+		<input class="form-control" type="number" id="playerIlvl">
+		<br>
+		<button class="btn btn-lg btn-default" type="button" id="playerAdd">Add</button>
+		<button class="btn btn-lg btn-danger" type="button" id="playerMassAdd">Mass Add</button>
+	</div>
+
+	<footer>
+		Copyright &copy; <a href="http://puia-stefan.net">Stefan Puia</a>
+		Powered by <a href="https://nodejs.org/en/">NodeJS</a> and <a href="http://getbootstrap.com/">Bootstrap</a>
+	</footer>
+
+	<div class="massadd">
+		<div class="btn closemassadd">X</div>
+<textarea># mass add players
+# lines marked with a '#' are considered comments
+# example player info:
+# name;class;specid/specname;ilvl
+Albionna;priest;1;963
+Albionna;priest;holy;963</textarea>
+		<div id="massAdd">
+			Add Players
+		</div>
+	</div>
+</body>
+</html>

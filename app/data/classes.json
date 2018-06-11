@@ -1,0 +1,253 @@
+{
+	"deathknight": {
+		"name": "Death Knight",
+		"colour": "#C41F3B",
+		"specs": [{
+			"name": "Blood",
+			"role": "tank",
+			"range": "melee",
+			"icon": "spell_deathknight_bloodpresence"
+		}, {
+			"name": "Frost",
+			"role": "dps",
+			"range": "melee",
+			"icon": "spell_deathknight_frostpresence"
+		}, {
+			"name": "Unholy",
+			"role": "dps",
+			"range": "melee",
+			"icon": "spell_deathknight_unholypresence"
+		}]
+	},
+
+	"demonhunter": {
+		"name": "Demon Hunter",
+		"colour": "#A330C9",
+		"specs": [{
+			"name": "Havoc",
+			"role": "dps",
+			"range": "melee",
+			"icon": "ability_demonhunter_specdps"
+		}, {
+			"name": "Vengeance",
+			"role": "tank",
+			"range": "melee",
+			"icon": "ability_demonhunter_spectank"
+		}]
+	},
+
+	"druid": {
+		"name": "Druid",
+		"colour": "#FF7D0A",
+		"specs": [{
+			"name": "Balance",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_nature_starfall"
+		}, {
+			"name": "Feral",
+			"role": "dps",
+			"range": "melee",
+			"icon": "ability_druid_catform"
+		}, {
+			"name": "Guardian",
+			"role": "tank",
+			"range": "melee",
+			"icon": "ability_racial_bearform"
+		}, {
+			"name": "Restoration",
+			"role": "heal",
+			"range": "ranged",
+			"icon": "spell_nature_healingtouch"
+		}]
+	},
+
+	"hunter": {
+		"name": "Hunter",
+		"colour": "#ABD473",
+		"specs": [{
+			"name": "Beast Master",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "ability_hunter_bestialdiscipline"
+		},{
+			"name": "Marksmanship",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "ability_hunter_focusedaim"
+		},  {
+			"name": "Survival",
+			"role": "dps",
+			"range": "melee",
+			"icon": "ability_hunter_camouflage"
+		}]
+	},
+
+	"mage": {
+		"name": "Mage",
+		"colour": "#ABD473",
+		"specs": [{
+			"name": "Arcane",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_holy_magicalsentry"
+		}, {
+			"name": "Fire",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_fire_firebolt02"
+		}, {
+			"name": "Frost",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_frost_frostbolt02"
+		}]
+	},
+
+	"monk": {
+		"name": "Monk",
+		"colour": "#00FF96",
+		"specs": [{
+			"name": "Brewmaster",
+			"role": "tank",
+			"range": "melee",
+			"icon": "spell_monk_brewmaster_spec"
+		}, {
+			"name": "Mistweaver",
+			"role": "heal",
+			"range": "ranged",
+			"icon": "spell_monk_mistweaver_spec"
+		}, {
+			"name": "Windwalker",
+			"role": "dps",
+			"range": "melee",
+			"icon": "spell_monk_windwalker_spec"
+		}]
+	},
+
+	"priest": {
+		"name": "Priest",
+		"colour": "#FFFFFF",
+		"specs": [{
+			"name": "Discipline",
+			"role": "heal",
+			"range": "ranged",
+			"icon": "spell_holy_powerwordshield"
+		}, {
+			"name": "Holy",
+			"role": "heal",
+			"range": "ranged",
+			"icon": "spell_holy_guardianspirit"
+		}, {
+			"name": "Shadow",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_shadow_shadowwordpain"
+		}]
+	},
+
+	"paladin": {
+		"name": "Paladin",
+		"colour": "#F58CBA",
+		"specs": [{
+			"name": "Holy",
+			"role": "heal",
+			"range": "ranged",
+			"icon": "spell_holy_holybolt"
+		},{
+			"name": "Protection",
+			"role": "tank",
+			"range": "melee",
+			"icon": "ability_paladin_shieldofthetemplar"
+		},  {
+			"name": "Retribution",
+			"role": "dps",
+			"range": "melee",
+			"icon": "spell_holy_auraoflight"
+		}]
+	},
+
+	"rogue": {
+		"name": "Rogue",
+		"colour": "#FFF569",
+		"specs": [{
+			"name": "Assassination",
+			"role": "dps",
+			"range": "melee",
+			"icon": "ability_rogue_deadlybrew"
+		}, {
+			"name": "Outlaw",
+			"role": "dps",
+			"range": "melee",
+			"icon": "inv_sword_30"
+		}, {
+			"name": "Subtlety",
+			"role": "dps",
+			"range": "melee",
+			"icon": "ability_stealth"
+		}]
+	},
+
+	"warlock": {
+		"name": "Warlock",
+		"colour": "#9482C9",
+		"specs": [{
+			"name": "Affliction",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_shadow_deathcoil"
+		}, {
+			"name": "Demonology",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_shadow_metamorphosis"
+		}, {
+			"name": "Destruction",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_shadow_rainoffire"
+		}]
+	},
+
+	"shaman": {
+		"name": "Shaman",
+		"colour": "#0070DE",
+		"specs": [{
+			"name": "Elemental",
+			"role": "dps",
+			"range": "ranged",
+			"icon": "spell_nature_lightning"
+		},{
+			"name": "Enhancement",
+			"role": "dps",
+			"range": "melee",
+			"icon": "spell_shaman_improvedstormstrike"
+		},  {
+			"name": "Restoration",
+			"role": "heal",
+			"range": "ranged",
+			"icon": "spell_nature_magicimmunity"
+		}]
+	},
+
+	"warrior": {
+		"name": "Warrior",
+		"colour": "#C79C6E",
+		"specs": [{
+			"name": "Arms",
+			"role": "dps",
+			"range": "melee",
+			"icon": "ability_warrior_savageblow"
+		}, {
+			"name": "Fury",
+			"role": "dps",
+			"range": "melee",
+			"icon": "ability_warrior_innerrage"
+		}, {
+			"name": "Protection",
+			"role": "tank",
+			"range": "melee",
+			"icon": "ability_warrior_defensivestance"
+		}]
+	}
+}
