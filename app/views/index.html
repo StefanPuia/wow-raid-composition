@@ -3,14 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>WoW Raid Composition Tool</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-	<link rel="stylesheet" href="static/style.css">
+	<link rel="stylesheet" href="/static/style.css">
 
-	<script src="static/functions.js"></script>
-	<script src="static/script.js"></script>
+	<script src="/static/functions.js"></script>
+	<script src="/static/script.js"></script>
 </head>
 <body>
 	<h2>Raid Composition Tool</h2>
@@ -46,27 +47,27 @@
 		<select class="form-control" id="playerSpec">
 			<option value="0" disabled selected>Select a class</option>
 		</select>
-		Item Level:
-		<input class="form-control" type="number" id="playerIlvl">
+        <button class="btn btn-lg btn-default" type="button" id="playerAdd">Add</button>
 		<br>
-		<button class="btn btn-lg btn-default" type="button" id="playerAdd">Add</button>
-		<button class="btn btn-lg btn-danger" type="button" id="playerMassAdd">Mass Add</button>
+		<button class="btn btn-lg btn-default" type="button" id="showImport">Import</button>
+		<button class="btn btn-lg btn-default" type="button" id="export">Export</button>
+		<button class="btn btn-lg btn-success" type="button" id="saveComp">Save this composition</button>
+		<button class="btn btn-lg btn-danger" type="button" id="resetComp">Reset</button>
 	</div>
 
 	<footer>
-		Copyright &copy; <a href="http://puia-stefan.net">Stefan Puia</a>
 		Powered by <a href="https://nodejs.org/en/">NodeJS</a> and <a href="http://getbootstrap.com/">Bootstrap</a>
 	</footer>
 
-	<div class="massadd">
-		<div class="btn closemassadd">X</div>
-<textarea># mass add players
+	<div class="importBox">
+		<div class="btn closeImport">X</div>
+<textarea># import a raid composition
 # lines marked with a '#' are considered comments
-# example player info:
-# name;class;specid/specname;ilvl
-Albionna;priest;1;963
-Albionna;priest;holy;963</textarea>
-		<div id="massAdd">
+# example import:
+# name;class;specid/specname
+Albionna;priest;1
+Albionna;priest;holy</textarea>
+		<div id="import">
 			Add Players
 		</div>
 	</div>

@@ -104,6 +104,9 @@ function createPlayer(player) {
     let container = newEl('div', {
         classList: 'player'
     })
+    if(player.name.split('-').length > 1) {
+        container.style.backgroundColor = '#6D7DB3';
+    }
     container.dataset.name = player.name.toLowerCase();
 
     let spec = newEl('div', {
@@ -111,10 +114,6 @@ function createPlayer(player) {
     })
     spec.append(newEl('img', {
         src: getSpecIcon(player.class, player.spec.id)
-    }))
-    spec.append(newEl('span', {
-        classList: 'ilvl',
-        textContent: player.spec.ilvl 
     }))
     container.append(spec);
 
@@ -138,19 +137,22 @@ function createPlayer(player) {
 }
 
 function getSpecIcon(classname, specid) {
-    return 'https://render-eu.worldofwarcraft.com/icons/18/' + 
+    return 'https://render-eu.worldofwarcraft.com/icons/56/' + 
                 classes[classname].specs[specid].icon + '.jpg';
 }
 
 function removePlayer(e) {
     let player = e.currentTarget.dataset.name;
     let name = player.charAt(0).toUpperCase() + player.slice(1);
+    let found = false;
     if(window.confirm(`Are you sure you want to delete the player ${name}?`)) {
-        callServer('/api/raider/' + player, {
-            method: 'delete'
-        }, function(err, data) {
-            loadRaiders(data);
+        raiders.forEach(function(raider, key) {
+            if(raider.name.toLowerCase() == player) {
+                raiders.splice(key, 1);
+                found = true;
+            }
         })
+        loadRaiders();
     }
 }
 
@@ -160,8 +162,9 @@ function appendPlayers(players, container) {
     })
 }
 
-function loadRaiders(raiders) {
+function loadRaiders() {
     clearTable();
+
     let roles = {
         tanks: [],
         healers: [],
@@ -171,6 +174,7 @@ function loadRaiders(raiders) {
         }
     }
 
+    console.log(raiders);
     raiders.forEach(function(raider) {
         let spec = classes[raider.class].specs[raider.spec.id];
 
@@ -210,23 +214,12 @@ function loadRaiders(raiders) {
     $('.ranged h3').textContent = 'Ranged: ' + roles.dps.ranged.length;
     $('.melee h3').textContent = 'Melee: ' + roles.dps.melee.length;
 
-    roles.tanks.sort(compareIlvls);
     appendPlayers(roles.tanks, $('.tanks'));
-
-    roles.healers.sort(compareIlvls);
     appendPlayers(roles.healers, $('.healers'));
-
-    roles.dps.ranged.sort(compareIlvls);
     appendPlayers(roles.dps.ranged, $('.ranged'));
-
-    roles.dps.melee.sort(compareIlvls);
     appendPlayers(roles.dps.melee, $('.melee'));
-}
 
-function compareIlvls(a, b) {
-    if(a.spec.ilvl > b.spec.ilvl) return -1;
-    if(a.spec.ilvl < b.spec.ilvl) return 1;
-    return 0;
+    localStorage[storage + 'Raiders'] = JSON.stringify(raiders);
 }
 
 function clearTable() {
@@ -241,33 +234,28 @@ function addPlayer() {
         name: $('#playerName').value,
         class: $('#playerClass').value,
         spec: {
-            id: $('#playerSpec').value,
-            ilvl: $('#playerIlvl').value,
+            id: $('#playerSpec').value
         }
     }
 
-    if(player.name && player.class && player.spec.id && player.spec.ilvl) {
-        $('#playerName').value = $('#playerIlvl').value = '';
-        callServer('/api/raiders', {
-            method: 'post',
-            body: JSON.stringify(player)
-        }, function(err, data) {
-            loadRaiders(data);
-        })
+    if(player.name && player.class && player.spec.id) {
+        $('#playerName').value = '';
+        raiders = raiders.concat(player);
+        loadRaiders();
     }
 }
 
-function showMassAdd() {
-    $('.massadd').style.display = 'block';
+function showImportBox() {
+    $('.importBox').style.display = 'block';
 }
 
-function closeMassAdd() {
-    $('.massadd').style.display = 'none';
+function closeImportBox() {
+    $('.importBox').style.display = 'none';
 }
 
-function massAdd() {
-    // get mass add text and split lines
-    let text = $('.massadd textarea').value;
+function importPlayers(text) {
+    // get the import and split lines
+    text = typeof text == 'string' ? text : $('.importBox textarea').value;
     let lines = text.split('\n');
     let players = [];
 
@@ -282,7 +270,7 @@ function massAdd() {
             // split stats
             let stats = line.split(';');
 
-            if(stats.length === 4) {
+            if(stats.length === 3) {
                 // remove inner whitespaces
                 stats.forEach(function(part) {part.trim()});
 
@@ -304,18 +292,46 @@ function massAdd() {
                     name: stats[0],
                     class: stats[1],
                     spec: {
-                        id: specid,
-                        ilvl: stats[3]
+                        id: specid
                     }
                 })
             }
         }
     })
-    closeMassAdd();
-    callServer('/api/raiders', {
-        method: 'post',
-        body: JSON.stringify(players)
-    }, function(err, data) {
-        loadRaiders(data);
+    closeImportBox();
+    raiders = players;
+    loadRaiders();
+}
+
+function resetComp() {
+    if(window.confirm("Are you sure you want to reset this build? You will not be able to get it back if you did not save it!")) {
+        delete localStorage.raiders;
+        raiders = [];
+        loadRaiders();
+    }
+}
+
+function exportPlayers() {
+    let output = '';
+    raiders.forEach(function(raider) {
+        output += `${raider.name};${raider.class};${raider.spec.id}\n`;
     })
+    showImportBox();
+    $('.importBox textarea').value = output;
+}
+
+function saveComp() {
+    if(raiders.length > 0) {
+        let output = '';
+        raiders.forEach(function(raider) {
+            output += `${raider.name};${raider.class};${raider.spec.id}\n`;
+        })
+        callServer('/api/build', {
+            method: 'post',
+            body: JSON.stringify({export: output})
+        }, function(err, data) {
+            if(err) throw err;
+            window.location = '/build/' + data.hash;
+        })
+    }
 }

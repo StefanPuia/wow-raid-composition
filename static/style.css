@@ -29,58 +29,55 @@ body {
 							 "ranged melee"!important;
 	}
 	.addplayer {
-		display: none;
+		padding: 3em;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.raidcomp {
+		margin-bottom: 10em;
+		text-align: center;
+		grid-template-columns: 1!important;
+		grid-template-rows: 6!important;
+		grid-template-areas: "total"
+							 "tanks"
+							 "healers"
+							 "dps"
+							 "ranged"
+							 "melee"!important;
+	}
+	.addplayer {
+		padding: 3em;
 	}
 }
 
 .player {
 	border: solid 1px black;
-	display: block;
-	width: 11em;
-	margin-bottom: 5px;
-}
-
-.player .spec {
-	position: relative;
-}
-
-.player .spec img {
-	position: absolute;
-	top: 3px;
-	left: 5px;
-}
-
-.player .spec, .player .name, .player .delete {
-	display: inline-block;
-}
-
-.ilvl {
-	padding-left: 30px;
-	display: block;
-	min-width: 1.5em;
-}
-
-.name {
-	padding-left: 1em;
-	width: 4.5em;
-	display: block;
+	display: grid;
+	width: 14em;
+    grid-template-columns: 30px 1fr 30px;
+    padding: 2px;
+    margin-bottom: 1px;
 }
 
 .addplayer > * {
 	margin: 0.5em;
 }
 
+.spec img {
+    width: 28px;
+}
+
 .addplayer {
 	text-align: center;
+	margin-bottom: 1em;
 }
 
 .player .delete {
 	cursor: pointer;
-	margin-left: 0.8em;
-	margin-right: 0.2em;
 }
 
-.massadd {
+.importBox {
 	display: none;
 	position: fixed;
 	top: 0;
@@ -90,13 +87,14 @@ body {
 	background: #1D1D1D;
 }
 
-.massadd textarea {
+.importBox textarea {
 	width: 100%;
 	height: 100%;
 	padding: 3em;
+	color: black;
 }
 
-.closemassadd {
+.closeImport {
 	background: black;
 	position: fixed;
 	right: 1em;
@@ -107,7 +105,7 @@ body {
 	cursor: pointer;
 }
 
-#massAdd {
+#import {
 	background: black;
 	position: fixed;
 	bottom: 0;
@@ -121,6 +119,7 @@ body {
 	margin-bottom: 5em;
 	text-align: center;
 	display: grid;
+	grid-gap: 5px;
 	grid-template-columns: 4;
 	grid-template-rows: 2;
 	grid-template-areas: "total total total total"

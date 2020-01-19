@@ -2,6 +2,7 @@
 
 let classes = {};
 let raiders = [];
+let storage = 'local';
 
 window.addEventListener('load', function() {
 	callServer('/api/classes', {}, function(err, classData) {
@@ -16,11 +17,25 @@ window.addEventListener('load', function() {
 			}))
 		})
 
-		callServer('/api/raiders', {}, function(err, raiderData) {
-			if(err) throw err;
-			raiders = raiderData;
-			loadRaiders(raiders);
-		})
+		if(typeof localStorage.localRaiders != 'undefined') {
+			raiders = JSON.parse(localStorage.localRaiders);
+		}
+
+		let build = getParameterValue('build');
+		if(build) {
+			callServer('/api/build/' + build, {}, function(err, data) {
+				if(err) {
+					window.location = "/build";
+				}
+				else {
+					storage = 'server';
+					importPlayers(data);
+				}
+			})
+		}
+		else {
+			loadRaiders();
+		}
 	})
 
 	$('#playerClass').addEventListener('change', function() {
@@ -37,9 +52,11 @@ window.addEventListener('load', function() {
 	})
 
 	$('#playerAdd').addEventListener('click', addPlayer);
-	$('#playerIlvl').addEventListener('keyup', function(e) {if(e.which == 13)addPlayer();})
 	$('#playerName').addEventListener('keyup', function(e) {if(e.which == 13)addPlayer();})
-	$('#playerMassAdd').addEventListener('click', showMassAdd);
-	$('.closemassadd').addEventListener('click', closeMassAdd);
-	$('#massAdd').addEventListener('click', massAdd);
+	$('#showImport').addEventListener('click', showImportBox);
+	$('.closeImport').addEventListener('click', closeImportBox);
+	$('#import').addEventListener('click', importPlayers);
+	$('#export').addEventListener('click', exportPlayers);
+	$('#resetComp').addEventListener('click', resetComp);
+	$('#saveComp').addEventListener('click', saveComp);
 })
