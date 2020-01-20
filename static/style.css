@@ -6,17 +6,31 @@ body {
 	font-family: 'Oswald', sans-serif;
 	font-size: 18px;
 	background: #1D1D1D;
-	margin-left: 25vw;
-	margin-right: 25vw;
 	color: white;
 	text-align: center;
-	margin-bottom: 2em;
+    display: grid;
+    grid-template-rows: 63px 1fr 176px;
+    height: 100vh;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-@media only screen and (max-width: 800px) {
+#comp {
+    height: calc(100vh - 239px);
+    overflow-y: auto;
+}
+
+@media only screen and (min-width: 1101px) {
+    body {
+        margin-left: calc(calc(100vw - 1100px) / 2);
+        margin-right: calc(calc(100vw - 1100px) / 2);
+    }
+}
+
+@media only screen and (max-width: 1100px) {
 	body {
-		margin-left: 0;
-		margin-right: 0;
+	    margin-left: calc(calc(100vw - 500px) / 2);
+	    margin-right: calc(calc(100vw - 500px) / 2);
 	}
 	.raidcomp {
 		margin-bottom: 10em;
@@ -31,9 +45,19 @@ body {
 	.addplayer {
 		padding: 3em;
 	}
+
+    #comp {
+        height: unset;
+        overflow-y: unset;
+    }
 }
 
 @media only screen and (max-width: 500px) {
+    body {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
 	.raidcomp {
 		margin-bottom: 10em;
 		text-align: center;
@@ -52,12 +76,29 @@ body {
 }
 
 .player {
-	border: solid 1px black;
+	border: solid 2px black;
 	display: grid;
 	width: 14em;
     grid-template-columns: 30px 1fr 30px;
     padding: 2px;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.player.gray {
+    border-color: gray;
+}
+
+.player.red {
+    border-color: red;
+}
+
+.player.orange {
+    border-color: orange;
+}
+
+.player.green {
+    border-color: green;
 }
 
 .addplayer > * {
@@ -89,7 +130,7 @@ body {
 
 .importBox textarea {
 	width: 100%;
-	height: 100%;
+	height: calc(100vh - 100px);
 	padding: 3em;
 	color: black;
 }
@@ -116,7 +157,6 @@ body {
 }
 
 .raidcomp {
-	margin-bottom: 5em;
 	text-align: center;
 	display: grid;
 	grid-gap: 5px;

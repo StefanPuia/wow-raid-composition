@@ -1,6 +1,6 @@
 'use strict';
 
-let verbose = true;
+let verbose = localStorage.verbose === "true" || false;
 
 /**
  * Shorthand function for querySelector
@@ -102,7 +102,7 @@ function toggleVerbose() {
 
 function createPlayer(player) {
     let container = newEl('div', {
-        classList: 'player'
+        classList: 'player ' + getInviteStatusColour(player.status)
     })
     if(player.name.split('-').length > 1) {
         container.style.backgroundColor = '#6D7DB3';
@@ -174,7 +174,6 @@ function loadRaiders() {
         }
     }
 
-    console.log(raiders);
     raiders.forEach(function(raider) {
         let spec = classes[raider.class].specs[raider.spec.id];
 
@@ -233,13 +232,15 @@ function addPlayer() {
     let player = {
         name: $('#playerName').value,
         class: $('#playerClass').value,
+        status: $("#inviteStatus").value,
         spec: {
             id: $('#playerSpec').value
         }
     }
 
-    if(player.name && player.class && player.spec.id) {
-        $('#playerName').value = '';
+    if (player.name && player.class && player.spec.id && player.status) {
+        cleanup();
+        raiders = raiders.filter(x => x.name !== player.name);
         raiders = raiders.concat(player);
         loadRaiders();
     }
@@ -265,17 +266,14 @@ function importPlayers(text) {
 
         // if not a comment
         if(line.charAt(0) !== '#') {
+            line = line.replace(/\s/g, "");
             // capitalize character name
             line = line.charAt(0).toUpperCase() + line.slice(1);
             // split stats
             let stats = line.split(';');
 
-            if(stats.length === 3) {
-                // remove inner whitespaces
-                stats.forEach(function(part) {part.trim()});
-
+            if(stats.length >= 3) {
                 let specid = 0;
-
                 if(isNaN(parseInt(stats[2]))) {
                     for(let i = 0; i < classes[stats[1]].specs.length; i++) {
                         if(classes[stats[1]].specs[i].name.toLowerCase() == stats[2]) {
@@ -285,12 +283,13 @@ function importPlayers(text) {
                     }
                 }
                 else {
-                    specid = stats[2];
+                    specid = stats[2] || 1;
                 }
 
                 players.push({
                     name: stats[0],
                     class: stats[1],
+                    status: getInviteStatus(stats[3] || 2),
                     spec: {
                         id: specid
                     }
@@ -324,7 +323,7 @@ function saveComp() {
     if(raiders.length > 0) {
         let output = '';
         raiders.forEach(function(raider) {
-            output += `${raider.name};${raider.class};${raider.spec.id}\n`;
+            output += `${raider.name};${raider.class};${raider.spec.id};${raider.status}\n`;
         })
         callServer('/api/build', {
             method: 'post',
@@ -334,4 +333,99 @@ function saveComp() {
             window.location = '/build/' + data.hash;
         })
     }
+}
+
+function getInviteStatus(statusId) {
+    // inviteStatus
+    // 1 CALENDAR_INVITESTATUS_INVITED
+    // 2 CALENDAR_INVITESTATUS_ACCEPTED
+    // 3 CALENDAR_INVITESTATUS_DECLINED
+    // 4 CALENDAR_INVITESTATUS_CONFIRMED
+    // 5 CALENDAR_INVITESTATUS_OUT
+    // 6 CALENDAR_INVITESTATUS_STANDBY
+    // 7 CALENDAR_INVITESTATUS_SIGNEDUP
+    // 8 CALENDAR_INVITESTATUS_NOT_SIGNEDUP
+    // 9 CALENDAR_INVITESTATUS_TENTATIVE
+
+    switch (statusId) {
+        case "1":
+        case "8":
+            return "1";
+
+        case "2":
+        case "4":
+        case "7":
+            return "2";
+
+        case "6":
+        case "9":
+            return "9";
+
+        case "3":
+        case "5":
+            return "3";
+    }
+    return inviteStatus[statusId];
+}
+
+function getInviteStatusColour(statusId) {
+    const inviteStatus = {
+        "1": "gray",
+        "8": "gray",
+
+        "2": "green",
+        "4": "green",
+        "7": "green",
+
+        "6": "orange",
+        "9": "orange",
+
+        "3": "red",
+        "5": "red",
+    }
+
+    return inviteStatus[statusId];
+}
+
+function handlePlayerClick(element) {
+    const player = getPlayerParent(element);
+    if (!player) return;
+    const raider = raiders.find(x => x.name.toLowerCase() === player.dataset.name.toLowerCase());
+    $("#playerName").value = raider.name;
+    $("#playerClass").value = raider.class;
+    updateSpecs();
+    $("#playerSpec").value = raider.spec.id;
+    $("#inviteStatus").value = raider.status;
+}
+
+function getPlayerParent(element) {
+    if (element.classList.contains("player")) return element;
+    let parent = element.parentNode;
+    while (parent.tagName.toUpperCase() !== "BODY") {
+        if (parent.classList.contains("player")) return parent;
+        parent = parent.parentNode;
+    }
+    return false;
+}
+
+function updateSpecs() {
+    let key = $('#playerClass').value;
+    $('#playerSpec option:not([disabled])', true).forEach(function (option) {
+        option.remove();
+    })
+    if (classes[key]) {
+        classes[key].specs.forEach(function (spec, id) {
+            $('#playerSpec').append(newEl('option', {
+                value: id,
+                textContent: spec.name
+            }))
+        })
+    }
+}
+
+function cleanup() {
+    $('#playerName').value = "";
+    $("#playerClass").value = "0";
+    updateSpecs();
+    $("#inviteStatus").value = "2";
 }

@@ -1,3 +1,6 @@
+/*jslint browser: true */
+/*global window */
+
 'use strict';
 
 let classes = {};
@@ -38,19 +41,7 @@ window.addEventListener('load', function() {
 		}
 	})
 
-	$('#playerClass').addEventListener('change', function() {
-		let key = $('#playerClass').value;
-		$('#playerSpec option:not([disabled])', true).forEach(function(option) {
-			option.remove();
-		})
-		classes[key].specs.forEach(function(spec, id) {
-			$('#playerSpec').append(newEl('option', {
-				value: id,
-				textContent: spec.name
-			}))
-		})
-	})
-
+	$('#playerClass').addEventListener('change', updateSpecs);
 	$('#playerAdd').addEventListener('click', addPlayer);
 	$('#playerName').addEventListener('keyup', function(e) {if(e.which == 13)addPlayer();})
 	$('#showImport').addEventListener('click', showImportBox);
@@ -59,4 +50,8 @@ window.addEventListener('load', function() {
 	$('#export').addEventListener('click', exportPlayers);
 	$('#resetComp').addEventListener('click', resetComp);
 	$('#saveComp').addEventListener('click', saveComp);
+
+    $("body").addEventListener("click", (e) => {
+        handlePlayerClick(e.target);
+    });
 })

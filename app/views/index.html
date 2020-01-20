@@ -15,49 +15,60 @@
 </head>
 <body>
 	<h2>Raid Composition Tool</h2>
-	<div class="raidcomp">
-		<div class="total">
-			<h3>Total</h3>
-		</div>
-		<div class="tanks">
-			<h3>Tanks</h3>
-		</div>
-		<div class="healers">
-			<h3>Healers</h3>
-		</div>
-		<div class="dps">
-			<h3>DPS</h3>
-		</div>	
-		<div class="ranged">
-			<h3>Ranged</h3>
-		</div>
-		<div class="melee">
-			<h3>Melee</h3>
-		</div>	
-	</div>
+	<div id="comp">
+        <div class="raidcomp">
+            <div class="total">
+                <h3>Total</h3>
+            </div>
+            <div class="tanks">
+                <h3>Tanks</h3>
+            </div>
+            <div class="healers">
+                <h3>Healers</h3>
+            </div>
+            <div class="dps">
+                <h3>DPS</h3>
+            </div>
+            <div class="ranged">
+                <h3>Ranged</h3>
+            </div>
+            <div class="melee">
+                <h3>Melee</h3>
+            </div>
+        </div>
+    </div>
 
-	<div class="addplayer form form-inline">
-		Name:
-		<input class="form-control" type="text" id="playerName">
-		Class:
-		<select class="form-control" id="playerClass">
-			<option value="0" disabled selected>Select a class</option>
-		</select>
-		Spec:
-		<select class="form-control" id="playerSpec">
-			<option value="0" disabled selected>Select a class</option>
-		</select>
-        <button class="btn btn-lg btn-default" type="button" id="playerAdd">Add</button>
-		<br>
-		<button class="btn btn-lg btn-default" type="button" id="showImport">Import</button>
-		<button class="btn btn-lg btn-default" type="button" id="export">Export</button>
-		<button class="btn btn-lg btn-success" type="button" id="saveComp">Save this composition</button>
-		<button class="btn btn-lg btn-danger" type="button" id="resetComp">Reset</button>
-	</div>
+    <div id="footer">
+        <div class="addplayer form form-inline">
+            Name:
+            <input class="form-control" type="text" id="playerName">
+            Class:
+            <select class="form-control" id="playerClass">
+                <option value="0" disabled selected>Select a class</option>
+            </select>
+            Spec:
+            <select class="form-control" id="playerSpec">
+                <option value="" disabled selected>Select a spec</option>
+            </select>
+            Status:
+            <select class="form-control" id="inviteStatus">
+                <option value="0" disabled selected>Select a status</option>
+                <option value="2">Accepted</option>
+                <option value="9">Tentative</option>
+                <option value="3">Declined</option>
+            </select>
+            <button class="btn btn-lg btn-default" type="button" id="playerAdd">Add</button>
+            <br>
+            <button class="btn btn-lg btn-default" type="button" id="showImport">Import</button>
+            <button class="btn btn-lg btn-default" type="button" id="export">Export</button>
+            <button class="btn btn-lg btn-success" type="button" id="saveComp">Save this composition</button>
+            <button class="btn btn-lg btn-danger" type="button" id="resetComp">Reset</button>
+        </div>
 
-	<footer>
-		Powered by <a href="https://nodejs.org/en/">NodeJS</a> and <a href="http://getbootstrap.com/">Bootstrap</a>
-	</footer>
+        <footer>
+            Powered by <a href="https://nodejs.org/en/">NodeJS</a> and <a href="http://getbootstrap.com/">Bootstrap</a>
+        </footer>
+    </div>
 
 	<div class="importBox">
 		<div class="btn closeImport">X</div>
